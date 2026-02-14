@@ -10,9 +10,8 @@ class HeaderSection extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          // LADO ESQUERDO: Títulos
           Expanded(
-            flex: 3, // Dá prioridade de expansão para o título
+            flex: 3,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
@@ -39,7 +38,6 @@ class HeaderSection extends StatelessWidget {
                       fontFamily: 'DM Sans',
                       fontSize: 30,
                       fontWeight: FontWeight.w900,
-                      // Removido height agressivo que causava corte vertical
                       color: const Color.fromRGBO(30, 30, 30, 1.0),
                     ),
                   ),
@@ -47,17 +45,13 @@ class HeaderSection extends StatelessWidget {
               ],
             ),
           ),
-
           const SizedBox(width: 16),
-
-          // LADO DIREITO: Botão e Perfil envoltos em Flexible
           Flexible(
             flex: 4,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               mainAxisSize: MainAxisSize.min,
               children: [
-                // BOTÃO SELECIONAR
                 Flexible(
                   child: Material(
                     color: Colors.transparent,
@@ -66,8 +60,7 @@ class HeaderSection extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                       child: Container(
                         padding: const EdgeInsets.symmetric(
-                          horizontal:
-                              36, // Reduzi um pouco o padding horizontal
+                          horizontal: 36,
                           vertical: 14,
                         ),
                         decoration: BoxDecoration(
@@ -97,11 +90,7 @@ class HeaderSection extends StatelessWidget {
                     ),
                   ),
                 ),
-
-                const SizedBox(
-                  width: 28,
-                ), // Espaçamento reduzido para telas menores
-                // PERFIL
+                const SizedBox(width: 28),
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -112,7 +101,6 @@ class HeaderSection extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: 8),
-                    // Column de texto do perfil protegida contra overflow
                     Flexible(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,

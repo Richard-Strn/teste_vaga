@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:teste_vaga/widgets/dashboard_card_2.dart';
+import 'package:teste_vaga/widgets/dashboard_2/dashboard_section_2.dart';
 import 'package:teste_vaga/widgets/header_section.dart';
 
 class SecondPage extends StatelessWidget {
@@ -18,7 +18,7 @@ class SecondPage extends StatelessWidget {
             children: [
               const HeaderSection(),
               const SizedBox(height: 24),
-              DashboardCard2(), // Certifique-se que este widget não tem altura infinita
+              DashboardSection2(),
             ],
           ),
         ),

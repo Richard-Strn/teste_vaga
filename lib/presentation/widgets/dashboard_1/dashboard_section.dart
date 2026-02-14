@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:teste_vaga/pages/secondpage.dart';
-import 'package:teste_vaga/widgets/stat_card.dart';
+import 'package:teste_vaga/widgets/dashboard_card.dart';
 
-class DashboardCard extends StatefulWidget {
+class DashboardSection extends StatefulWidget {
   final VoidCallback? onNavigateToSecondPage;
-  const DashboardCard({super.key, this.onNavigateToSecondPage});
+  const DashboardSection({super.key, this.onNavigateToSecondPage});
 
   @override
-  State<DashboardCard> createState() => _DashboardCardState();
+  State<DashboardSection> createState() => _DashboardSectionState();
 }
 
-class _DashboardCardState extends State<DashboardCard> {
+class _DashboardSectionState extends State<DashboardSection> {
   bool _isHovered = false;
 
   @override
@@ -28,11 +27,9 @@ class _DashboardCardState extends State<DashboardCard> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          /// HEADER
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              // Flexibilidade adicionada ao grupo de textos do título
               Expanded(
                 child: Row(
                   children: [
@@ -49,7 +46,6 @@ class _DashboardCardState extends State<DashboardCard> {
                       ),
                     ),
                     const SizedBox(width: 8),
-                    // Flexible permite que a coluna encolha se o botão precisar de espaço
                     Flexible(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -61,7 +57,7 @@ class _DashboardCardState extends State<DashboardCard> {
                               fontFamily: 'DM Sans',
                               fontSize: 20,
                               fontWeight: FontWeight.w600,
-                              height: 1.2, // Ajustado para não cortar a fonte
+                              height: 1.2,
                               letterSpacing: 0.8,
                               color: Colors.white,
                             ),
@@ -85,9 +81,7 @@ class _DashboardCardState extends State<DashboardCard> {
                   ],
                 ),
               ),
-
-              const SizedBox(width: 16), // Espaço mínimo entre título e botão
-              // Botão com efeito Hover
+              const SizedBox(width: 16),
               GestureDetector(
                 onTap: () {
                   if (widget.onNavigateToSecondPage != null) {
@@ -104,7 +98,7 @@ class _DashboardCardState extends State<DashboardCard> {
                     curve: Curves.easeInOut,
                     child: Container(
                       padding: const EdgeInsets.symmetric(
-                        horizontal: 20, // Reduzido de 40 para melhor adaptação
+                        horizontal: 20,
                         vertical: 12,
                       ),
                       decoration: BoxDecoration(
@@ -145,21 +139,14 @@ class _DashboardCardState extends State<DashboardCard> {
               ),
             ],
           ),
-
           const SizedBox(height: 20),
-
-          /// MINI CARDS
-          // Envolto em SingleChildScrollView ou usando LayoutBuilder se necessário,
-          // mas o Expanded já ajuda na Row se o pai tiver largura definida.
           LayoutBuilder(
             builder: (context, constraints) {
-              // Se a tela for muito pequena (ex: mobile), você poderia mudar para Wrap.
-              // Aqui mantemos Row com Expanded para respeitar sua estrutura original.
               return Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: const [
                   Expanded(
-                    child: StatCard(
+                    child: DashboardCard(
                       title: "Acessos hoje",
                       percentage: "+12%",
                       value: "127",
@@ -174,7 +161,7 @@ class _DashboardCardState extends State<DashboardCard> {
                   ),
                   SizedBox(width: 10),
                   Expanded(
-                    child: StatCard(
+                    child: DashboardCard(
                       title: "Encomendas",
                       percentage: "18",
                       percentageText: "pendentes",
@@ -189,7 +176,7 @@ class _DashboardCardState extends State<DashboardCard> {
                   ),
                   SizedBox(width: 10),
                   Expanded(
-                    child: StatCard(
+                    child: DashboardCard(
                       title: "Ocorrências",
                       percentage: "55",
                       percentageText: "ativas",

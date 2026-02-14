@@ -38,18 +38,11 @@ class _CustomSidebarState extends State<CustomSidebar> {
           ),
           boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 8)],
         ),
-
-        // ... (resto do código anterior permanece igual)
         child: Column(
           children: [
             const SizedBox(height: 40),
-
-            // Logo
             const Icon(Icons.flash_on, color: Color(0xFF1CB197), size: 40),
-
             const SizedBox(height: 40),
-
-            // Menu dinâmico
             Expanded(
               child: ListView.builder(
                 itemCount: items.length,
@@ -65,33 +58,25 @@ class _CustomSidebarState extends State<CustomSidebar> {
                       if (index == 0) {
                         widget.onItemSelected(index);
                       }
-                      // Os outros botões não executam ação
                     },
                   );
                 },
               ),
             ),
-
-            // --- SEÇÃO ADICIONADA: LINHA E BOTÃO SAIR ---
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Divider(color: Colors.grey.withOpacity(0.2), thickness: 1),
             ),
-
             SidebarItem(
               icon: Icons.power_settings_new_rounded,
               title: "Sair",
               isExpanded: isExpanded,
-              isSelected: false, // Nunca fica "selecionado" permanentemente
-              onTap: () {
-                // Adicione aqui sua lógica de Logout
-                print("Logout acionado");
-              },
+              isSelected: false,
+              onTap: () {},
             ),
-            const SizedBox(height: 20), // Espaçamento inferior
+            const SizedBox(height: 20),
           ],
         ),
-        // ... (resto do código permanece igual)
       ),
     );
   }

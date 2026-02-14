@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 
-class StatCard extends StatelessWidget {
+class DashboardCard extends StatelessWidget {
   final String title;
   final String percentage;
   final String percentageText;
@@ -13,7 +13,7 @@ class StatCard extends StatelessWidget {
   final bool blurValue;
   final List<double> barHeights;
 
-  const StatCard({
+  const DashboardCard({
     super.key,
     required this.title,
     required this.percentage,
@@ -40,7 +40,6 @@ class StatCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          // Header
           Row(
             children: [
               Container(
@@ -51,66 +50,58 @@ class StatCard extends StatelessWidget {
                 ),
                 child: Icon(icon, color: iconColor, size: 19),
               ),
-              const SizedBox(width: 10), // Espaçamento Original Mantido
-
+              const SizedBox(width: 10),
               Expanded(
-                child: FittedBox(
-                  fit: BoxFit.scaleDown,
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    title,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 16, // Fonte Original
-                      fontWeight: FontWeight.w100,
-                      letterSpacing: 0.4,
-                    ),
+                flex: 2,
+                child: Text(
+                  title,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w100,
+                    letterSpacing: 0.4,
                   ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
-              // Espaçamento Original Mantido
-              // Agrupador da Porcentagem para evitar quebra individual
+              const SizedBox(width: 8),
               Flexible(
+                flex: 1,
                 child: FittedBox(
                   fit: BoxFit.scaleDown,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 88.0),
-                    child: Row(
-                      children: [
-                        _buildBlurredWidget(
-                          blur: blurValue,
-                          child: Text(
-                            percentage,
-                            style: TextStyle(
-                              color: percentageColor,
-                              fontWeight: FontWeight.bold,
-                              // fontSize padrão (não definido no original, então segue o padrão)
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ), // Espaçamento Original Mantido
-                        Text(
-                          percentageText,
+                  alignment: Alignment.centerRight,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      _buildBlurredWidget(
+                        blur: blurValue,
+                        child: Text(
+                          percentage,
                           style: TextStyle(
-                            fontFamily: 'Inter',
-                            color: percentageColor.withOpacity(0.8),
-                            fontSize: 14, // Fonte Original
-                            fontWeight: FontWeight.w700,
-                            height: 1.0,
-                            letterSpacing: 0.6,
+                            color: percentageColor,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                      const SizedBox(width: 4),
+                      Text(
+                        percentageText,
+                        style: TextStyle(
+                          fontFamily: 'Inter',
+                          color: percentageColor.withOpacity(0.8),
+                          fontSize: 14,
+                          fontWeight: FontWeight.w700,
+                          letterSpacing: 0.6,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 16), // Espaçamento Original Mantido
-          // Valor Principal
+          const SizedBox(height: 16),
           _buildBlurredWidget(
             blur: blurValue,
             child: FittedBox(
@@ -120,35 +111,31 @@ class StatCard extends StatelessWidget {
                 value,
                 style: const TextStyle(
                   color: Colors.white,
-                  fontSize: 28, // Fonte Original
+                  fontSize: 28,
                   fontWeight: FontWeight.bold,
                 ),
               ),
             ),
           ),
-          const SizedBox(height: 24), // Espaçamento Original Mantido
-          // Gráfico Responsivo
+          const SizedBox(height: 24),
           LayoutBuilder(
             builder: (context, constraints) {
               double availableWidth = constraints.maxWidth;
               int numberOfBars = barHeights.length;
-              double spacing = 4.0; // Espaçamento Original Mantido
+              double spacing = 4.0;
               double barWidth =
                   (availableWidth - (spacing * (numberOfBars - 1))) /
                   numberOfBars;
-
               return Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: List.generate(numberOfBars, (index) {
                   return Container(
                     width: barWidth > 0 ? barWidth : 1,
-                    height: barHeights[index],
+                    height: barHeights[index].clamp(0, 100),
                     decoration: BoxDecoration(
                       color: barColor,
-                      borderRadius: BorderRadius.circular(
-                        barWidth > 0 ? barWidth * 0.1 : 1,
-                      ),
+                      borderRadius: BorderRadius.circular(2),
                     ),
                   );
                 }),

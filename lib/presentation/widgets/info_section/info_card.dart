@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class NotificationCard extends StatefulWidget {
+class InfoCard extends StatefulWidget {
   final IconData icon;
   final Color iconBackgroundColor;
   final String title;
   final String subtitle;
   final String notificationCount;
 
-  const NotificationCard({
+  const InfoCard({
     super.key,
     required this.icon,
     required this.iconBackgroundColor,
@@ -17,10 +17,10 @@ class NotificationCard extends StatefulWidget {
   });
 
   @override
-  State<NotificationCard> createState() => _NotificationCardState();
+  State<InfoCard> createState() => _InfoCardState();
 }
 
-class _NotificationCardState extends State<NotificationCard> {
+class _InfoCardState extends State<InfoCard> {
   bool _isHovered = false;
 
   @override
@@ -35,13 +35,11 @@ class _NotificationCardState extends State<NotificationCard> {
       child: Stack(
         clipBehavior: Clip.none,
         children: [
-          // Container Principal Animado
           AnimatedContainer(
             duration: const Duration(milliseconds: 200),
             width: 280,
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
-              // Muda a cor de fundo para a cor do ícone no hover
               color: _isHovered ? widget.iconBackgroundColor : Colors.white,
               borderRadius: BorderRadius.circular(24),
               border: Border.all(
@@ -67,11 +65,9 @@ class _NotificationCardState extends State<NotificationCard> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      // Container do Ícone
                       Container(
                         padding: const EdgeInsets.all(10),
                         decoration: BoxDecoration(
-                          // No hover o fundo do ícone fica branco/transparente
                           color: _isHovered
                               ? Colors.white.withOpacity(0.2)
                               : widget.iconBackgroundColor,
@@ -79,7 +75,6 @@ class _NotificationCardState extends State<NotificationCard> {
                         ),
                         child: Icon(widget.icon, color: Colors.white, size: 12),
                       ),
-                      // Seta Branca (só aparece no hover)
                       AnimatedOpacity(
                         duration: const Duration(milliseconds: 200),
                         opacity: _isHovered ? 1.0 : 0.0,
@@ -92,41 +87,35 @@ class _NotificationCardState extends State<NotificationCard> {
                     ],
                   ),
                   const SizedBox(height: 12),
-                  // Título (fica branco no hover)
                   Text(
                     widget.title,
                     style: TextStyle(
                       fontFamily: 'DM Sans',
-                      fontSize: 20, // Figma: 20px
-                      fontWeight: FontWeight.w900, // Figma: 800 (ExtraBold)
-                      height: 16 / 20, // Figma: 16px / 20px = 0.8
-                      letterSpacing: 0.2, // Figma: -0.41px
+                      fontSize: 20,
+                      fontWeight: FontWeight.w900,
+                      height: 16 / 20,
+                      letterSpacing: 0.2,
                       color: _isHovered
                           ? Colors.white
-                          : const Color(0xFF1A1A1A), // Mantido do original
+                          : const Color(0xFF1A1A1A),
                     ),
                   ),
                   const SizedBox(height: 12),
-                  // Subtítulo (fica branco suave no hover)
                   Text(
                     widget.subtitle,
                     style: TextStyle(
                       fontFamily: 'DM Sans',
-                      fontSize: 16, // Figma: 16px
-                      fontWeight: FontWeight.w400, // Figma: 400 (Regular)
-                      height: 1.0, // Figma: 16px / 16px = 1.0
-                      letterSpacing: -0.41, // Figma: -0.41px
-                      color: _isHovered
-                          ? Colors.white70
-                          : Colors.grey, // Mantido do original
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                      height: 1.0,
+                      letterSpacing: -0.41,
+                      color: _isHovered ? Colors.white70 : Colors.grey,
                     ),
                   ),
                 ],
               ),
             ),
           ),
-
-          // Badge de Notificação (Mantido fixo, sem desaparecer)
           if (showNotification)
             Positioned(
               top: -8,

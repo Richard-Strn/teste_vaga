@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:teste_vaga/widgets/dashboard_card.dart';
-import 'package:teste_vaga/widgets/header_section.dart';
-import 'package:teste_vaga/widgets/info_section.dart';
+import 'package:teste_vaga/widgets/dashboard_1/dashboard_section.dart';
+import 'package:teste_vaga/widgets/header/header_section.dart';
+import 'package:teste_vaga/widgets/info_section/info_section.dart';
 
-class MainScreen extends StatelessWidget {
+class MainPage extends StatelessWidget {
   final void Function()? onNavigateToSecondPage;
-  const MainScreen({super.key, this.onNavigateToSecondPage});
+  const MainPage({super.key, this.onNavigateToSecondPage});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class MainScreen extends StatelessWidget {
                   children: [
                     const HeaderSection(),
                     const SizedBox(height: 15),
-                    DashboardCard(
+                    DashboardSection(
                       onNavigateToSecondPage: onNavigateToSecondPage,
                     ),
                     const SizedBox(height: 30),

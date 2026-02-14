@@ -1,29 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:teste_vaga/widgets/stat_card2.dart';
+import 'package:teste_vaga/presentation/widgets/dashboard_2/dashboard_card_2.dart';
 
-class DashboardCard2 extends StatefulWidget {
+class DashboardSection2 extends StatefulWidget {
   final VoidCallback? onNavigateToSecondPage;
-  const DashboardCard2({super.key, this.onNavigateToSecondPage});
+  const DashboardSection2({super.key, this.onNavigateToSecondPage});
 
   @override
-  State<DashboardCard2> createState() => _DashboardCardState();
+  State<DashboardSection2> createState() => _DashboardSection2State();
 }
 
-class _DashboardCardState extends State<DashboardCard2> {
+class _DashboardSection2State extends State<DashboardSection2> {
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(32),
-      decoration: BoxDecoration(
-        // Removido gradient e color para tornar o fundo transparente
-        borderRadius: BorderRadius.circular(28),
-        // Opcional: Adicione uma borda fina se quiser delimitar o espaço
-        // border: Border.all(color: Colors.grey.withOpacity(0.3)),
-      ),
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(28)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          /// HEADER
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -56,7 +50,7 @@ class _DashboardCardState extends State<DashboardCard2> {
                               fontWeight: FontWeight.w600,
                               height: 1.2,
                               letterSpacing: 0.8,
-                              color: Colors.black, // Ajuste conforme seu fundo
+                              color: Colors.black,
                             ),
                           ),
                           SizedBox(height: 6),
@@ -69,7 +63,7 @@ class _DashboardCardState extends State<DashboardCard2> {
                               fontWeight: FontWeight.w400,
                               height: 1.0,
                               letterSpacing: 0.4,
-                              color: Colors.black, // Ajuste conforme seu fundo
+                              color: Colors.black,
                             ),
                           ),
                         ],
@@ -80,17 +74,14 @@ class _DashboardCardState extends State<DashboardCard2> {
               ),
             ],
           ),
-
           const SizedBox(height: 20),
-
-          /// MINI CARDS
           LayoutBuilder(
             builder: (context, constraints) {
               return Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: const [
                   Expanded(
-                    child: StatCard2(
+                    child: DashboardCard2(
                       title: "Acessos hoje",
                       icon: Icons.arrow_upward,
                       iconColor: Color(0xFF03A9F4),
@@ -100,7 +91,7 @@ class _DashboardCardState extends State<DashboardCard2> {
                   ),
                   SizedBox(width: 10),
                   Expanded(
-                    child: StatCard2(
+                    child: DashboardCard2(
                       title: "Veículos cadastrados",
                       icon: Icons.directions_car,
                       iconColor: Color.fromARGB(255, 166, 61, 187),
@@ -110,7 +101,7 @@ class _DashboardCardState extends State<DashboardCard2> {
                   ),
                   SizedBox(width: 10),
                   Expanded(
-                    child: StatCard2(
+                    child: DashboardCard2(
                       title: "Encomendas",
                       icon: Icons.inventory_2_outlined,
                       iconColor: Color(0xFF4CAF50),
@@ -120,7 +111,7 @@ class _DashboardCardState extends State<DashboardCard2> {
                   ),
                   SizedBox(width: 10),
                   Expanded(
-                    child: StatCard2(
+                    child: DashboardCard2(
                       title: "Ocorrências",
                       icon: Icons.warning_amber_rounded,
                       iconColor: Color(0xFFEF5350),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:teste_vaga/pages/mainscreen.dart';
-import 'package:teste_vaga/pages/secondpage.dart';
+import 'package:teste_vaga/presentation/pages/main_page.dart';
+import 'package:teste_vaga/presentation/pages/second_page.dart';
 import 'package:teste_vaga/widgets/custom_sidebar.dart';
 
 void main() {
@@ -13,14 +13,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false, // Remove a faixa de debug
+      debugShowCheckedModeBanner: false,
       title: 'Dashboard Condomínio',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF1CB197)),
         useMaterial3: true,
-        scaffoldBackgroundColor: const Color(
-          0xFFF5F7F9,
-        ), // Fundo levemente cinza como na imagem
+        scaffoldBackgroundColor: const Color(0xFFF5F7F9),
       ),
       home: const MyHomePage(),
     );
@@ -36,7 +34,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   void _goToSecondPage() {
-    _onItemTapped(1); // Novo índice da SecondPage no PageView
+    _onItemTapped(1);
   }
 
   final PageController _pageController = PageController();
@@ -60,8 +58,8 @@ class _MyHomePageState extends State<MyHomePage> {
               controller: _pageController,
               physics: const NeverScrollableScrollPhysics(),
               children: [
-                MainScreen(onNavigateToSecondPage: _goToSecondPage), // Index 0
-                const SecondPage(), // Index 1
+                MainPage(onNavigateToSecondPage: _goToSecondPage),
+                const SecondPage(),
               ],
             ),
           ),
