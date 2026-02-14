@@ -162,7 +162,6 @@ class _DashboardCardState extends State<DashboardCard> {
                     child: StatCard(
                       title: "Acessos hoje",
                       percentage: "+12%",
-                      percentageText: "",
                       value: "127",
                       icon: Icons.arrow_upward,
                       blurValue: false,
@@ -170,6 +169,7 @@ class _DashboardCardState extends State<DashboardCard> {
                       percentageColor: Color(0xFF29B6F6),
                       iconColor: Color(0xFF03A9F4),
                       barHeights: [15, 35, 25, 45, 20, 32, 18, 22],
+                      percentageText: '',
                     ),
                   ),
                   SizedBox(width: 10),

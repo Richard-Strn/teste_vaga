@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:teste_vaga/pages.dart';
 import 'package:teste_vaga/pages/mainscreen.dart';
 import 'package:teste_vaga/pages/secondpage.dart';
 import 'package:teste_vaga/widgets/custom_sidebar.dart';
