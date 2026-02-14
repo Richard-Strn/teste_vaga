@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 
 class StatCard2 extends StatelessWidget {
@@ -20,17 +19,17 @@ class StatCard2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(16),
+      // Remova o mainAxisSize: MainAxisSize.min se estiver dentro de um Grid
+      padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: const Color.fromARGB(255, 245, 243, 243),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.white.withOpacity(0.1)),
+        border: Border.all(color: Colors.black.withOpacity(0.05)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween, // Distribui o espaço
         children: [
-          // Header
           Row(
             children: [
               Container(
@@ -39,49 +38,50 @@ class StatCard2 extends StatelessWidget {
                   color: iconColor.withOpacity(0.2),
                   borderRadius: BorderRadius.circular(4),
                 ),
-                child: Icon(icon, color: iconColor, size: 19),
+                child: Icon(icon, color: iconColor, size: 18),
               ),
-              const SizedBox(width: 10),
-
+              const SizedBox(width: 8),
               Expanded(
-                child: FittedBox(
-                  fit: BoxFit.scaleDown,
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    title,
-                    style: const TextStyle(
-                      color: Colors.black,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      letterSpacing: 0.4,
-                    ),
+                // OBRIGATÓRIO para não explodir a Row lateralmente
+                child: Text(
+                  title,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 14,
                   ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
             ],
           ),
 
-          const SizedBox(height: 30),
+          const SizedBox(
+            height: 16,
+          ), // Reduzi o respiro para evitar overflow vertical
 
-          // --- ADICIONADO AQUI ---
-          Text(
-            '$number',
-            style: const TextStyle(
-              color: Colors.black,
-              fontSize: 23, // Tamanho grande para o número principal
-              fontWeight: FontWeight.w900,
-            ),
-          ), // Pequeno respiro entre os textos
-          Text(
-            textNumber,
-            style: TextStyle(
-              color: iconColor, // Cor próxima à da imagem
-              fontSize: 12,
-              fontWeight: FontWeight.w500,
-              letterSpacing: 0.5,
-            ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              FittedBox(
+                // Faz o número encolher se for grande demais (ex: 1.000.000)
+                fit: BoxFit.scaleDown,
+                child: Text(
+                  '$number',
+                  style: const TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w900,
+                  ),
+                ),
+              ),
+              Text(
+                textNumber,
+                style: TextStyle(color: iconColor, fontSize: 11),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ],
           ),
-          // -----------------------
         ],
       ),
     );

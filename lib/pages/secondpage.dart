@@ -8,17 +8,19 @@ class SecondPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // Defina a cor aqui
       backgroundColor: const Color.fromARGB(238, 238, 238, 238),
-      body: Padding(
-        padding: const EdgeInsets.all(30),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const HeaderSection(),
-            const SizedBox(height: 24),
-            DashboardCard2(),
-          ],
+      // Envolva o Padding com SingleChildScrollView
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(30),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const HeaderSection(),
+              const SizedBox(height: 24),
+              DashboardCard2(), // Certifique-se que este widget não tem altura infinita
+            ],
+          ),
         ),
       ),
     );
