@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 class StatCard2 extends StatelessWidget {
   final String title;
-  final String value;
   final IconData icon;
   final Color iconColor;
   final int number;
@@ -12,7 +11,6 @@ class StatCard2 extends StatelessWidget {
   const StatCard2({
     super.key,
     required this.title,
-    required this.value,
     required this.icon,
     required this.number,
     required this.textNumber,
@@ -54,7 +52,7 @@ class StatCard2 extends StatelessWidget {
                     style: const TextStyle(
                       color: Colors.black,
                       fontSize: 16,
-                      fontWeight: FontWeight.w100,
+                      fontWeight: FontWeight.w600,
                       letterSpacing: 0.4,
                     ),
                   ),

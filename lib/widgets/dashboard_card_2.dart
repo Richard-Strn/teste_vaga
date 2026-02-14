@@ -92,7 +92,6 @@ class _DashboardCardState extends State<DashboardCard2> {
                   Expanded(
                     child: StatCard2(
                       title: "Acessos hoje",
-                      value: "10",
                       icon: Icons.arrow_upward,
                       iconColor: Color(0xFF03A9F4),
                       number: 10,
@@ -103,10 +102,9 @@ class _DashboardCardState extends State<DashboardCard2> {
                   Expanded(
                     child: StatCard2(
                       title: "Veículos cadastrados",
-                      value: "10",
                       icon: Icons.directions_car,
                       iconColor: Color.fromARGB(255, 166, 61, 187),
-                      number: 12,
+                      number: 10,
                       textNumber: '+3 novos veículos',
                     ),
                   ),
@@ -114,10 +112,9 @@ class _DashboardCardState extends State<DashboardCard2> {
                   Expanded(
                     child: StatCard2(
                       title: "Encomendas",
-                      value: "10",
                       icon: Icons.inventory_2_outlined,
                       iconColor: Color(0xFF4CAF50),
-                      number: 45,
+                      number: 10,
                       textNumber: '8 pendentes',
                     ),
                   ),
@@ -125,10 +122,9 @@ class _DashboardCardState extends State<DashboardCard2> {
                   Expanded(
                     child: StatCard2(
                       title: "Ocorrências",
-                      value: "100",
                       icon: Icons.warning_amber_rounded,
                       iconColor: Color(0xFFEF5350),
-                      number: 77,
+                      number: 100,
                       textNumber: '55 ativas',
                     ),
                   ),
