@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:teste_vaga/widgets/info_section/info_card.dart';
+import 'package:teste_vaga/presentation/widgets/info_section/info_card.dart';
 
 class InfoSection extends StatelessWidget {
   const InfoSection({super.key});

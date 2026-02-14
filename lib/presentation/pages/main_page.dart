@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:teste_vaga/widgets/dashboard_1/dashboard_section.dart';
-import 'package:teste_vaga/widgets/header/header_section.dart';
-import 'package:teste_vaga/widgets/info_section/info_section.dart';
+import 'package:teste_vaga/presentation/widgets/dashboard_1/dashboard_section.dart';
+import 'package:teste_vaga/presentation/widgets/header/header_section.dart';
+import 'package:teste_vaga/presentation/widgets/info_section/info_section.dart';
 
 class MainPage extends StatelessWidget {
   final void Function()? onNavigateToSecondPage;

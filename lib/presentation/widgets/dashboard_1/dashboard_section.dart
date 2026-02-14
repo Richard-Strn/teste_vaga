@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:teste_vaga/widgets/dashboard_card.dart';
+import 'package:teste_vaga/presentation/widgets/dashboard_1/dashboard_card.dart';
 
 class DashboardSection extends StatefulWidget {
   final VoidCallback? onNavigateToSecondPage;

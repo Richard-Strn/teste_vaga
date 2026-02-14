@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:teste_vaga/presentation/pages/main_page.dart';
 import 'package:teste_vaga/presentation/pages/second_page.dart';
-import 'package:teste_vaga/widgets/custom_sidebar.dart';
+import 'package:teste_vaga/presentation/widgets/sidebar/custom_sidebar.dart';
 
 void main() {
   runApp(const MyApp());
