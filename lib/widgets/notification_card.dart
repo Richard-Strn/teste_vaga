@@ -47,7 +47,7 @@ class _NotificationCardState extends State<NotificationCard> {
               border: Border.all(
                 color: _isHovered
                     ? Colors.transparent
-                    : Colors.black.withOpacity(0.1),
+                    : Colors.black.withOpacity(0.15),
                 width: 1,
               ),
               boxShadow: [
@@ -58,57 +58,71 @@ class _NotificationCardState extends State<NotificationCard> {
                 ),
               ],
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    // Container do Ícone
-                    Container(
-                      padding: const EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        // No hover o fundo do ícone fica branco/transparente
-                        color: _isHovered
-                            ? Colors.white.withOpacity(0.2)
-                            : widget.iconBackgroundColor,
-                        borderRadius: BorderRadius.circular(12),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      // Container do Ícone
+                      Container(
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          // No hover o fundo do ícone fica branco/transparente
+                          color: _isHovered
+                              ? Colors.white.withOpacity(0.2)
+                              : widget.iconBackgroundColor,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Icon(widget.icon, color: Colors.white, size: 12),
                       ),
-                      child: Icon(widget.icon, color: Colors.white, size: 16),
-                    ),
-                    // Seta Branca (só aparece no hover)
-                    AnimatedOpacity(
-                      duration: const Duration(milliseconds: 200),
-                      opacity: _isHovered ? 1.0 : 0.0,
-                      child: const Icon(
-                        Icons.arrow_forward,
-                        color: Colors.white,
-                        size: 24,
+                      // Seta Branca (só aparece no hover)
+                      AnimatedOpacity(
+                        duration: const Duration(milliseconds: 200),
+                        opacity: _isHovered ? 1.0 : 0.0,
+                        child: const Icon(
+                          Icons.arrow_forward,
+                          color: Colors.white,
+                          size: 24,
+                        ),
                       ),
+                    ],
+                  ),
+                  const SizedBox(height: 12),
+                  // Título (fica branco no hover)
+                  Text(
+                    widget.title,
+                    style: TextStyle(
+                      fontFamily: 'DM Sans',
+                      fontSize: 20, // Figma: 20px
+                      fontWeight: FontWeight.w900, // Figma: 800 (ExtraBold)
+                      height: 16 / 20, // Figma: 16px / 20px = 0.8
+                      letterSpacing: 0.2, // Figma: -0.41px
+                      color: _isHovered
+                          ? Colors.white
+                          : const Color(0xFF1A1A1A), // Mantido do original
                     ),
-                  ],
-                ),
-                const SizedBox(height: 12),
-                // Título (fica branco no hover)
-                Text(
-                  widget.title,
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                    color: _isHovered ? Colors.white : const Color(0xFF1A1A1A),
                   ),
-                ),
-                const SizedBox(height: 4),
-                // Subtítulo (fica branco suave no hover)
-                Text(
-                  widget.subtitle,
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: _isHovered ? Colors.white70 : Colors.grey,
+                  const SizedBox(height: 12),
+                  // Subtítulo (fica branco suave no hover)
+                  Text(
+                    widget.subtitle,
+                    style: TextStyle(
+                      fontFamily: 'DM Sans',
+                      fontSize: 16, // Figma: 16px
+                      fontWeight: FontWeight.w400, // Figma: 400 (Regular)
+                      height: 1.0, // Figma: 16px / 16px = 1.0
+                      letterSpacing: -0.41, // Figma: -0.41px
+                      color: _isHovered
+                          ? Colors.white70
+                          : Colors.grey, // Mantido do original
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
 

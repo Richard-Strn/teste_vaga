@@ -33,7 +33,7 @@ class StatCard extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: Colors.white.withOpacity(0.05),
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(12),
         border: Border.all(color: Colors.white.withOpacity(0.1)),
       ),
       child: Column(
@@ -47,14 +47,19 @@ class StatCard extends StatelessWidget {
                 padding: const EdgeInsets.all(4),
                 decoration: BoxDecoration(
                   color: iconColor.withOpacity(0.2),
-                  borderRadius: BorderRadius.circular(6),
+                  borderRadius: BorderRadius.circular(4),
                 ),
                 child: Icon(icon, color: iconColor, size: 18),
               ),
               const SizedBox(width: 10),
               Text(
                 title,
-                style: const TextStyle(color: Colors.white, fontSize: 16),
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w100,
+                  letterSpacing: 0.4,
+                ),
               ),
               const Spacer(),
 
@@ -75,8 +80,14 @@ class StatCard extends StatelessWidget {
               Text(
                 percentageText,
                 style: TextStyle(
-                  color: percentageColor.withOpacity(0.8),
-                  fontSize: 12,
+                  fontFamily: 'Inter',
+                  color: percentageColor.withOpacity(
+                    0.8,
+                  ), // Mantido do original
+                  fontSize: 14, // Figma: 14px
+                  fontWeight: FontWeight.w700, // Figma: 500 (Medium)
+                  height: 1.0, // Figma: 100%
+                  letterSpacing: 0.6, // Figma: 0%
                 ),
               ),
             ],
@@ -102,7 +113,7 @@ class StatCard extends StatelessWidget {
             builder: (context, constraints) {
               double availableWidth = constraints.maxWidth;
               int numberOfBars = barHeights.length;
-              double spacing = 8.0;
+              double spacing = 4.0;
               double barWidth =
                   (availableWidth - (spacing * (numberOfBars - 1))) /
                   numberOfBars;
@@ -116,7 +127,7 @@ class StatCard extends StatelessWidget {
                     height: barHeights[index],
                     decoration: BoxDecoration(
                       color: barColor,
-                      borderRadius: BorderRadius.circular(barWidth * 0.2),
+                      borderRadius: BorderRadius.circular(barWidth * 0.1),
                     ),
                   );
                 }),

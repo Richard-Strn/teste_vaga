@@ -11,7 +11,7 @@ class InfoSection extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 30),
       // Substituímos 'color' por 'decoration'
       decoration: BoxDecoration(
-        color: const Color.fromARGB(255, 250, 249, 249), // Cor de fundo cinza
+        color: Colors.white, // Cor de fundo cinza
         borderRadius: BorderRadius.circular(
           18,
         ), // Ajuste o valor conforme desejar
@@ -24,30 +24,41 @@ class InfoSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.0),
+            padding: EdgeInsets.symmetric(horizontal: 20.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   "Informações gerais",
                   style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF1A1A1A),
+                    fontFamily: 'DM Sans',
+                    fontSize: 20, // Figma: 20px
+                    fontWeight: FontWeight.w900, // Figma: 800 (ExtraBold)
+                    height: 16 / 20, // Figma: 16px / 20px = 0.8
+                    letterSpacing: 0.41, // Figma: -0.41px
+                    color: const Color(0xFF1A1A1A), // Mantido do original
                   ),
                 ),
+                const SizedBox(height: 6),
                 Text(
                   "Dados de todos os condomínios",
-                  style: TextStyle(fontSize: 16, color: Colors.grey),
+                  style: TextStyle(
+                    fontFamily: 'DM Sans',
+                    fontSize: 16, // Figma: 16px
+                    fontWeight: FontWeight.w400, // Figma: 400 (Regular)
+                    height: 1.0, // Figma: 16px / 16px = 1.0
+                    letterSpacing: -0.41, // Figma: -0.41px
+                    color: Colors.grey, // Mantido do original
+                  ),
                 ),
               ],
             ),
           ),
           const SizedBox(height: 24),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            padding: const EdgeInsets.symmetric(horizontal: 18.0),
             child: Wrap(
-              spacing: 20,
+              spacing: 20.8,
               runSpacing: 20,
               children: const [
                 NotificationCard(

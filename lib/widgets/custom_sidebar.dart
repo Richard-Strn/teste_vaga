@@ -117,10 +117,7 @@ class _SidebarItemState extends State<SidebarItem> {
           ),
           child: Row(
             children: [
-              Icon(
-                widget.icon,
-                color: active ? Colors.white : Colors.grey[600],
-              ),
+              Icon(widget.icon, color: active ? Colors.white : Colors.black),
               if (widget.isExpanded)
                 Expanded(
                   child: AnimatedOpacity(
@@ -131,7 +128,7 @@ class _SidebarItemState extends State<SidebarItem> {
                       child: Text(
                         widget.title,
                         style: TextStyle(
-                          color: active ? Colors.white : Colors.grey[700],
+                          color: active ? Colors.white : Colors.black,
                           fontWeight: widget.isSelected
                               ? FontWeight.bold
                               : FontWeight.normal,
