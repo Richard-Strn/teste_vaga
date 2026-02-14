@@ -23,9 +23,9 @@ class MainScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const HeaderSection(),
-                    const SizedBox(height: 30),
+                    const SizedBox(height: 15),
                     const DashboardCard(),
-                    const SizedBox(height: 40),
+                    const SizedBox(height: 30),
                     const InfoSection(),
                   ],
                 ),

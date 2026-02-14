@@ -14,10 +14,19 @@ class _CustomSidebarState extends State<CustomSidebar> {
   int selectedIndex = 0;
 
   final List<_SidebarData> items = const [
-    _SidebarData(Icons.grid_view_rounded, "Início"),
-    _SidebarData(Icons.business_rounded, "Condomínios"),
+    // 1. Início: Ícone de Dashboard (Layout da imagem)
+    _SidebarData(Icons.dashboard_rounded, "Início"),
+
+    // 2. Condomínios: Ícone de Prédio/Apartamento
+    _SidebarData(Icons.apartment_outlined, "Condomínios"),
+
+    // 3. Endereços: Ícone de Pin de Mapa
     _SidebarData(Icons.location_on_outlined, "Endereços"),
+
+    // 4. Usuários: Ícone de Pessoa única
     _SidebarData(Icons.person_outline, "Usuários"),
+
+    // 5. Visitantes: Ícone de Grupo de pessoas
     _SidebarData(Icons.people_outline, "Visitantes"),
   ];
 
@@ -38,6 +47,8 @@ class _CustomSidebarState extends State<CustomSidebar> {
           ),
           boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 8)],
         ),
+
+        // ... (resto do código anterior permanece igual)
         child: Column(
           children: [
             const SizedBox(height: 40),
@@ -53,7 +64,6 @@ class _CustomSidebarState extends State<CustomSidebar> {
                 itemCount: items.length,
                 itemBuilder: (context, index) {
                   final item = items[index];
-
                   return SidebarItem(
                     icon: item.icon,
                     title: item.title,
@@ -67,8 +77,27 @@ class _CustomSidebarState extends State<CustomSidebar> {
                 },
               ),
             ),
+
+            // --- SEÇÃO ADICIONADA: LINHA E BOTÃO SAIR ---
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Divider(color: Colors.grey.withOpacity(0.2), thickness: 1),
+            ),
+
+            SidebarItem(
+              icon: Icons.power_settings_new_rounded,
+              title: "Sair",
+              isExpanded: isExpanded,
+              isSelected: false, // Nunca fica "selecionado" permanentemente
+              onTap: () {
+                // Adicione aqui sua lógica de Logout
+                print("Logout acionado");
+              },
+            ),
+            const SizedBox(height: 20), // Espaçamento inferior
           ],
         ),
+        // ... (resto do código permanece igual)
       ),
     );
   }

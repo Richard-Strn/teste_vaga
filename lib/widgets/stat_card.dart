@@ -49,7 +49,7 @@ class StatCard extends StatelessWidget {
                   color: iconColor.withOpacity(0.2),
                   borderRadius: BorderRadius.circular(4),
                 ),
-                child: Icon(icon, color: iconColor, size: 18),
+                child: Icon(icon, color: iconColor, size: 19),
               ),
               const SizedBox(width: 10),
               Text(

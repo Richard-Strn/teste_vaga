@@ -7,7 +7,7 @@ class HeaderSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       // Padding opcional para afastar das bordas da tela
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.only(top: 16, bottom: 16),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -16,24 +16,27 @@ class HeaderSection extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(
-                "Administradora de Condomínios",
-                style: TextStyle(
-                  fontFamily:
-                      'DM Sans', // Certifique-se de ter essa fonte no pubspec ou use GoogleFonts.dmSans()
-                  fontSize: 15,
-                  fontWeight: FontWeight.w400, // font-weight: 400
-                  height:
-                      16 /
-                      15, // O Flutter usa multiplicador: line-height (16) / font-size (15)
-                  letterSpacing: -0.41, // letter-spacing: -0.41px
-                  color: // Color.fromRGBO(vermelho, verde, azul, opacidade de 0.0 a 1.0)
-                  const Color.fromRGBO(
-                    30,
-                    30,
-                    30,
-                    1.0,
-                  ), // Mantive sua cor original
+              Padding(
+                padding: const EdgeInsets.only(left: 2.0),
+                child: Text(
+                  "Administradora de Condomínios",
+                  style: TextStyle(
+                    fontFamily:
+                        'DM Sans', // Certifique-se de ter essa fonte no pubspec ou use GoogleFonts.dmSans()
+                    fontSize: 15,
+                    fontWeight: FontWeight.w400, // font-weight: 400
+                    height:
+                        16 /
+                        15, // O Flutter usa multiplicador: line-height (16) / font-size (15)
+                    letterSpacing: -0.41, // letter-spacing: -0.41px
+                    color: // Color.fromRGBO(vermelho, verde, azul, opacidade de 0.0 a 1.0)
+                    const Color.fromRGBO(
+                      30,
+                      30,
+                      30,
+                      1.0,
+                    ), // Mantive sua cor original
+                  ),
                 ),
               ),
               const SizedBox(height: 8),
@@ -43,10 +46,10 @@ class HeaderSection extends StatelessWidget {
                   fontFamily:
                       'DM Sans', // Certifique-se de ter a fonte no pubspec.yaml
                   fontSize: 30, // Figma: 30px
-                  fontWeight: FontWeight.w800, // Figma: 800 (ExtraBold)
+                  fontWeight: FontWeight.w900, // Figma: 800 (ExtraBold)
                   height:
                       16 / 30, // Figma: line-height (16px) / font-size (30px)
-                  letterSpacing: -0.41, // Figma: -0.41px
+                  letterSpacing: 0.1, // Figma: -0.41px
                   color: const Color.fromRGBO(
                     30,
                     30,
@@ -73,8 +76,8 @@ class HeaderSection extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                   child: Container(
                     padding: const EdgeInsets.symmetric(
-                      horizontal: 24,
-                      vertical: 14,
+                      horizontal: 32,
+                      vertical: 18,
                     ),
                     decoration: BoxDecoration(
                       color: const Color(0xFF0EA28E),
@@ -90,16 +93,16 @@ class HeaderSection extends StatelessWidget {
                                 'DM Sans', // Certifique-se de ter a fonte configurada
                             color:
                                 Colors.white, // Mantido do seu código original
-                            fontSize: 13, // Figma: 16px
+                            fontSize: 15, // Figma: 16px
                             fontWeight:
                                 FontWeight.w500, // Figma: 600 (SemiBold)
                             height:
                                 1.0, // Figma: line-height (16px) / font-size (16px) = 1.0
-                            letterSpacing: 0.5, // Figma: -0.41px
+                            letterSpacing: 0.4, // Figma: -0.41px
                           ),
                         ),
                         SizedBox(width: 7),
-                        Icon(Icons.search, color: Colors.white, size: 14),
+                        Icon(Icons.search, color: Colors.white, size: 16),
                       ],
                     ),
                   ),
@@ -128,7 +131,7 @@ class HeaderSection extends StatelessWidget {
                           fontSize: 14,
                           fontWeight: FontWeight.w600,
                           height: 1.0,
-                          letterSpacing: 0,
+                          letterSpacing: 0.3,
                           color: const Color.fromRGBO(
                             64,
                             64,
@@ -137,6 +140,7 @@ class HeaderSection extends StatelessWidget {
                           ), // Mantido do código original
                         ),
                       ),
+                      SizedBox(height: 2),
                       Text(
                         "Admin",
                         style: TextStyle(
@@ -145,7 +149,7 @@ class HeaderSection extends StatelessWidget {
                           fontSize: 12, // Figma: 12px
                           fontWeight: FontWeight.w500, // Figma: 600 (SemiBold)
                           height: 1.0, // Figma: 100%
-                          letterSpacing: 0, // Figma: 0px
+                          letterSpacing: 0.3, // Figma: 0px
                           color: const Color.fromRGBO(
                             86,
                             86,

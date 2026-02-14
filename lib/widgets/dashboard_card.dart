@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:teste_vaga/widgets/stat_card.dart';
 
-class DashboardCard extends StatelessWidget {
+class DashboardCard extends StatefulWidget {
   const DashboardCard({super.key});
+
+  @override
+  State<DashboardCard> createState() => _DashboardCardState();
+}
+
+class _DashboardCardState extends State<DashboardCard> {
+  // A variável deve ficar aqui, no Estado, para ser preservada
+  bool _isHovered = false;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +33,6 @@ class DashboardCard extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  // Ícone laranja
                   Container(
                     padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
@@ -33,15 +40,12 @@ class DashboardCard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(6),
                     ),
                     child: const Icon(
-                      Icons.dashboard_rounded,
+                      Icons.workspace_premium,
                       color: Colors.white,
                       size: 16,
                     ),
                   ),
-
                   const SizedBox(width: 8),
-
-                  // Título + subtítulo
                   const Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -49,13 +53,11 @@ class DashboardCard extends StatelessWidget {
                         "Dashboard Geral",
                         style: TextStyle(
                           fontFamily: 'DM Sans',
-                          fontSize: 20, // Figma: 20px
-                          fontWeight: FontWeight.w600, // Figma: 800 (ExtraBold)
-                          height:
-                              16 /
-                              20, // Figma: line-height (16px) / font-size (20px) = 0.8
-                          letterSpacing: 0.8, // Figma: -0.41px
-                          color: Colors.white, // Mantido do original
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                          height: 16 / 20,
+                          letterSpacing: 0.8,
+                          color: Colors.white,
                         ),
                       ),
                       SizedBox(height: 6),
@@ -63,11 +65,11 @@ class DashboardCard extends StatelessWidget {
                         "Dados e métricas dos condomínios",
                         style: TextStyle(
                           fontFamily: 'DM Sans',
-                          fontSize: 14, // Figma: 16px
-                          fontWeight: FontWeight.w100, // Figma: 400 (Regular)
-                          height: 1.0, // Figma: 16px / 16px = 1.0
-                          letterSpacing: 0.4, // Figma: -0.41px
-                          color: Colors.white, // Mantido do original
+                          fontSize: 14,
+                          fontWeight: FontWeight.w100,
+                          height: 1.0,
+                          letterSpacing: 0.4,
+                          color: Colors.white,
                         ),
                       ),
                     ],
@@ -75,118 +77,128 @@ class DashboardCard extends StatelessWidget {
                 ],
               ),
 
-              // Botão contornado
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 42,
-                  vertical: 12,
-                ),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: Colors.white70),
-                ),
-                child: const Row(
-                  children: [
-                    Text(
-                      "Experimente grátis",
-                      style: TextStyle(
-                        fontFamily: 'DM Sans',
-                        color: Colors.white, // Mantido do original
-                        fontSize: 15.36, // Figma: 15.36px
-                        fontWeight: FontWeight.w400, // Figma: 600 (SemiBold)
-                        height: 1.0, // Figma: 15.36px / 15.36px = 1.0
-                        letterSpacing: -0.39, // Figma: -0.39px
+              // Botão com efeito Hover
+              GestureDetector(
+                onTap: () {
+                  print("Botão Experimente grátis clicado!");
+                },
+                child: MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  onEnter: (_) => setState(() => _isHovered = true),
+                  onExit: (_) => setState(() => _isHovered = false),
+                  child: AnimatedScale(
+                    scale: _isHovered ? 1.05 : 1.0,
+                    duration: const Duration(milliseconds: 200),
+                    curve: Curves.easeInOut,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 40,
+                        vertical: 12,
+                      ),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: Colors.white70),
+                        color: _isHovered
+                            ? Colors.white.withOpacity(0.1)
+                            : Colors.transparent,
+                      ),
+                      child: const Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            "Experimente grátis",
+                            style: TextStyle(
+                              fontFamily: 'DM Sans',
+                              color: Colors.white,
+                              fontSize: 15.36,
+                              fontWeight: FontWeight.w400,
+                              height: 1.0,
+                              letterSpacing: -0.39,
+                            ),
+                          ),
+                          SizedBox(width: 6),
+                          Icon(
+                            Icons.arrow_forward,
+                            color: Colors.white,
+                            size: 18,
+                          ),
+                        ],
                       ),
                     ),
-                    SizedBox(width: 6),
-                    Icon(Icons.arrow_forward, color: Colors.white, size: 18),
-                  ],
+                  ),
                 ),
               ),
             ],
           ),
 
-          const SizedBox(height: 28),
+          const SizedBox(height: 20),
 
           /// MINI CARDS
           Row(
             children: const [
+              // 1. CARD AZUL - Acessos hoje
               Expanded(
                 child: StatCard(
                   title: "Acessos hoje",
                   percentage: "+12%",
                   percentageText: "",
                   value: "127",
-                  icon: Icons.trending_up,
+                  // Ícone de seta para cima (quadrado azul na imagem)
+                  icon: Icons.arrow_upward,
                   blurValue: false,
-                  barColor: Colors.blueAccent,
-                  barHeights: [
-                    10,
-                    25,
-                    15,
-                    40,
-                    30,
-                    10,
-                    20,
-                    13,
-                  ], // Aqui você controla o gráfico
+                  // Cor das barras (Azul sólido)
+                  barColor: const Color(0xFF0288D1),
+                  // Cor do texto de porcentagem (Azul claro)
+                  percentageColor: const Color(0xFF29B6F6),
+                  // Cor de fundo do ícone (Azul brilhante)
+                  iconColor: const Color(0xFF03A9F4),
+                  barHeights: [15, 35, 25, 45, 20, 32, 18, 22],
                 ),
               ),
-              SizedBox(width: 10),
+
+              const SizedBox(width: 10),
+
+              // 2. CARD VERDE - Encomendas
               Expanded(
                 child: StatCard(
                   title: "Encomendas",
-                  percentage: "12",
+                  percentage:
+                      "18", // Valor atualizado conforme imagem (exemplo)
                   percentageText: "pendentes",
-                  percentageColor: Color.fromARGB(
-                    255,
-                    216,
-                    84,
-                    7,
-                  ), // Cor verde para pendentes
                   value: "80",
-                  icon: Icons.trending_up,
+                  // Ícone de caixa/inventário (quadrado verde na imagem)
+                  icon: Icons.inventory_2_outlined,
                   blurValue: true,
-                  barColor: Colors.blueAccent,
-                  barHeights: [
-                    10,
-                    25,
-                    15,
-                    40,
-                    30,
-                    10,
-                    20,
-                    13,
-                  ], // Aqui você controla o gráfico
+                  // Cor das barras (Verde)
+                  barColor: const Color(0xFF43A047),
+                  // Cor do texto "pendentes" (Laranja/Amarelo queimado)
+                  percentageColor: const Color(0xFFF57C00),
+                  // Cor de fundo do ícone (Verde vibrante)
+                  iconColor: const Color(0xFF4CAF50),
+                  barHeights: [10, 25, 15, 40, 30, 10, 20, 13],
                 ),
               ),
-              SizedBox(width: 10),
+
+              const SizedBox(width: 10),
+
+              // 3. CARD VERMELHO - Ocorrências
               Expanded(
                 child: StatCard(
                   title: "Ocorrências",
-                  percentage: "+12%",
+                  percentage:
+                      "55", // Valor atualizado conforme imagem (exemplo)
                   percentageText: "ativas",
-                  value: "127",
-                  icon: Icons.flash_on,
+                  value: "100",
+                  // Ícone de alerta triangular (quadrado vermelho na imagem)
+                  icon: Icons.warning_amber_rounded,
                   blurValue: true,
-                  barColor: Color.fromARGB(255, 199, 122, 21),
-                  percentageColor: Color.fromARGB(255, 221, 129, 9),
-                  iconColor: Color.fromARGB(
-                    255,
-                    219,
-                    51,
-                    9,
-                  ), // Agora você define a cor aqui
-                  barHeights: [
-                    15,
-                    35,
-                    25,
-                    45,
-                    20,
-                    32,
-                    18,
-                    22,
-                  ], // 8 valores passados manualmente
+                  // Cor das barras (Rosa/Vermelho desbotado conforme a imagem)
+                  barColor: const Color(0xFFE57373),
+                  // Cor do texto "ativas" (Laranja avermelhado)
+                  percentageColor: const Color(0xFFFF7043),
+                  // Cor de fundo do ícone (Vermelho alerta)
+                  iconColor: const Color(0xFFEF5350),
+                  barHeights: [15, 35, 25, 45, 20, 32, 18, 22],
                 ),
               ),
             ],
