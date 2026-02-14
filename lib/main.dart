@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:teste_vaga/pages.dart';
 import 'package:teste_vaga/pages/mainscreen.dart';
+import 'package:teste_vaga/pages/secondpage.dart';
 import 'package:teste_vaga/widgets/custom_sidebar.dart';
 
 void main() {
@@ -64,6 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 GenericPage(title: "Endereços"), // Index 2
                 GenericPage(title: "Usuários"), // Index 3
                 GenericPage(title: "Visitantes"), // Index 4
+                SecondPage(), // Index 5 - Página de detalhes
               ],
             ),
           ),

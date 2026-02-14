@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:teste_vaga/pages/secondpage.dart';
 import 'package:teste_vaga/widgets/stat_card.dart';
 
 class DashboardCard extends StatefulWidget {
@@ -88,7 +89,10 @@ class _DashboardCardState extends State<DashboardCard> {
               // Botão com efeito Hover
               GestureDetector(
                 onTap: () {
-                  print("Botão Experimente grátis clicado!");
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const SecondPage()),
+                  );
                 },
                 child: MouseRegion(
                   cursor: SystemMouseCursors.click,
