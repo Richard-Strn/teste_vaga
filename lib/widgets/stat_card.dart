@@ -51,69 +51,88 @@ class StatCard extends StatelessWidget {
                 ),
                 child: Icon(icon, color: iconColor, size: 19),
               ),
-              const SizedBox(width: 10),
-              Text(
-                title,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w100,
-                  letterSpacing: 0.4,
-                ),
-              ),
-              const Spacer(),
+              const SizedBox(width: 10), // Espaçamento Original Mantido
 
-              // Porcentagem (Borra se blurValue for true)
-              _buildBlurredWidget(
-                blur: blurValue,
-                child: Text(
-                  percentage,
-                  style: TextStyle(
-                    color: percentageColor,
-                    fontWeight: FontWeight.bold,
+              Expanded(
+                child: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    title,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 16, // Fonte Original
+                      fontWeight: FontWeight.w100,
+                      letterSpacing: 0.4,
+                    ),
                   ),
                 ),
               ),
-              const SizedBox(width: 4),
-
-              // Texto da Porcentagem (NUNCA BORRA)
-              Text(
-                percentageText,
-                style: TextStyle(
-                  fontFamily: 'Inter',
-                  color: percentageColor.withOpacity(
-                    0.8,
-                  ), // Mantido do original
-                  fontSize: 14, // Figma: 14px
-                  fontWeight: FontWeight.w700, // Figma: 500 (Medium)
-                  height: 1.0, // Figma: 100%
-                  letterSpacing: 0.6, // Figma: 0%
+              // Espaçamento Original Mantido
+              // Agrupador da Porcentagem para evitar quebra individual
+              Flexible(
+                child: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 88.0),
+                    child: Row(
+                      children: [
+                        _buildBlurredWidget(
+                          blur: blurValue,
+                          child: Text(
+                            percentage,
+                            style: TextStyle(
+                              color: percentageColor,
+                              fontWeight: FontWeight.bold,
+                              // fontSize padrão (não definido no original, então segue o padrão)
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ), // Espaçamento Original Mantido
+                        Text(
+                          percentageText,
+                          style: TextStyle(
+                            fontFamily: 'Inter',
+                            color: percentageColor.withOpacity(0.8),
+                            fontSize: 14, // Fonte Original
+                            fontWeight: FontWeight.w700,
+                            height: 1.0,
+                            letterSpacing: 0.6,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 16),
-
-          // Valor Principal (Borra se blurValue for true)
+          const SizedBox(height: 16), // Espaçamento Original Mantido
+          // Valor Principal
           _buildBlurredWidget(
             blur: blurValue,
-            child: Text(
-              value,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 28,
-                fontWeight: FontWeight.bold,
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              alignment: Alignment.centerLeft,
+              child: Text(
+                value,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 28, // Fonte Original
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ),
-          const SizedBox(height: 24),
-
+          const SizedBox(height: 24), // Espaçamento Original Mantido
           // Gráfico Responsivo
           LayoutBuilder(
             builder: (context, constraints) {
               double availableWidth = constraints.maxWidth;
               int numberOfBars = barHeights.length;
-              double spacing = 4.0;
+              double spacing = 4.0; // Espaçamento Original Mantido
               double barWidth =
                   (availableWidth - (spacing * (numberOfBars - 1))) /
                   numberOfBars;
@@ -123,11 +142,13 @@ class StatCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: List.generate(numberOfBars, (index) {
                   return Container(
-                    width: barWidth > 0 ? barWidth : 2,
+                    width: barWidth > 0 ? barWidth : 1,
                     height: barHeights[index],
                     decoration: BoxDecoration(
                       color: barColor,
-                      borderRadius: BorderRadius.circular(barWidth * 0.1),
+                      borderRadius: BorderRadius.circular(
+                        barWidth > 0 ? barWidth * 0.1 : 1,
+                      ),
                     ),
                   );
                 }),
@@ -139,7 +160,6 @@ class StatCard extends StatelessWidget {
     );
   }
 
-  // Função de Blur aplicada apenas onde desejado
   Widget _buildBlurredWidget({required bool blur, required Widget child}) {
     if (!blur) return child;
     return ImageFiltered(

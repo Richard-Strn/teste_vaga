@@ -6,163 +6,144 @@ class HeaderSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      // Padding opcional para afastar das bordas da tela
-      padding: const EdgeInsets.only(top: 16, bottom: 16),
+      padding: const EdgeInsets.symmetric(vertical: 16),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          // Lado Esquerdo: Títulos
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 2.0),
-                child: Text(
-                  "Administradora de Condomínios",
-                  style: TextStyle(
-                    fontFamily:
-                        'DM Sans', // Certifique-se de ter essa fonte no pubspec ou use GoogleFonts.dmSans()
-                    fontSize: 15,
-                    fontWeight: FontWeight.w400, // font-weight: 400
-                    height:
-                        16 /
-                        15, // O Flutter usa multiplicador: line-height (16) / font-size (15)
-                    letterSpacing: -0.41, // letter-spacing: -0.41px
-                    color: // Color.fromRGBO(vermelho, verde, azul, opacidade de 0.0 a 1.0)
-                    const Color.fromRGBO(
-                      30,
-                      30,
-                      30,
-                      1.0,
-                    ), // Mantive sua cor original
+          // LADO ESQUERDO: Títulos
+          Expanded(
+            flex: 3, // Dá prioridade de expansão para o título
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                FittedBox(
+                  fit: BoxFit.scaleDown,
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "Administradora de Condomínios",
+                    style: TextStyle(
+                      fontFamily: 'DM Sans',
+                      fontSize: 15,
+                      fontWeight: FontWeight.w400,
+                      color: const Color.fromRGBO(30, 30, 30, 1.0),
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 8),
-              Text(
-                "Bem vindo ao portal",
-                style: TextStyle(
-                  fontFamily:
-                      'DM Sans', // Certifique-se de ter a fonte no pubspec.yaml
-                  fontSize: 30, // Figma: 30px
-                  fontWeight: FontWeight.w900, // Figma: 800 (ExtraBold)
-                  height:
-                      16 / 30, // Figma: line-height (16px) / font-size (30px)
-                  letterSpacing: 0.1, // Figma: -0.41px
-                  color: const Color.fromRGBO(
-                    30,
-                    30,
-                    30,
-                    1.0,
-                  ), // Mantido do seu código original
+                FittedBox(
+                  fit: BoxFit.scaleDown,
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "Bem vindo ao portal",
+                    style: TextStyle(
+                      fontFamily: 'DM Sans',
+                      fontSize: 30,
+                      fontWeight: FontWeight.w900,
+                      // Removido height agressivo que causava corte vertical
+                      color: const Color.fromRGBO(30, 30, 30, 1.0),
+                    ),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
 
-          // Lado Direito: Botão e Perfil
-          Row(
-            children: [
-              // Botão Selecionar Condomínio
-              // Substitua o Container do botão por este bloco:
-              Material(
-                color: Colors
-                    .transparent, // Mantém o fundo transparente para não sobrepor o estilo
-                child: InkWell(
-                  onTap: () {
-                    // Botão habilitado, mas não leva a lugar nenhum
-                  },
-                  borderRadius: BorderRadius.circular(10),
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 32,
-                      vertical: 18,
-                    ),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF0EA28E),
+          const SizedBox(width: 16),
+
+          // LADO DIREITO: Botão e Perfil envoltos em Flexible
+          Flexible(
+            flex: 4,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                // BOTÃO SELECIONAR
+                Flexible(
+                  child: Material(
+                    color: Colors.transparent,
+                    child: InkWell(
+                      onTap: () {},
                       borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: const [
-                        Text(
-                          "Selecione um condominio",
-                          style: TextStyle(
-                            fontFamily:
-                                'DM Sans', // Certifique-se de ter a fonte configurada
-                            color:
-                                Colors.white, // Mantido do seu código original
-                            fontSize: 15, // Figma: 16px
-                            fontWeight:
-                                FontWeight.w500, // Figma: 600 (SemiBold)
-                            height:
-                                1.0, // Figma: line-height (16px) / font-size (16px) = 1.0
-                            letterSpacing: 0.4, // Figma: -0.41px
-                          ),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal:
+                              36, // Reduzi um pouco o padding horizontal
+                          vertical: 14,
                         ),
-                        SizedBox(width: 7),
-                        Icon(Icons.search, color: Colors.white, size: 16),
-                      ],
+                        decoration: BoxDecoration(
+                          color: const Color(0xFF0EA28E),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: const [
+                            Flexible(
+                              child: Text(
+                                "Selecione um condomínio",
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  fontFamily: 'DM Sans',
+                                  color: Colors.white,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                            SizedBox(width: 8),
+                            Icon(Icons.search, color: Colors.white, size: 16),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                 ),
-              ),
 
-              const SizedBox(width: 32),
-
-              Row(
-                children: [
-                  const CircleAvatar(
-                    radius: 24,
-                    backgroundImage: NetworkImage(
-                      'https://via.placeholder.com/150',
+                const SizedBox(
+                  width: 28,
+                ), // Espaçamento reduzido para telas menores
+                // PERFIL
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const CircleAvatar(
+                      radius: 25,
+                      backgroundImage: NetworkImage(
+                        'https://via.placeholder.com/150',
+                      ),
                     ),
-                  ),
-                  const SizedBox(width: 12),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: const [
-                      Text(
-                        "User Name",
-                        style: TextStyle(
-                          fontFamily: 'Nunito Sans',
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
-                          height: 1.0,
-                          letterSpacing: 0.3,
-                          color: const Color.fromRGBO(
-                            64,
-                            64,
-                            64,
-                            1.0,
-                          ), // Mantido do código original
-                        ),
+                    const SizedBox(width: 8),
+                    // Column de texto do perfil protegida contra overflow
+                    Flexible(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: const [
+                          Text(
+                            "User Name",
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontFamily: 'Nunito Sans',
+                              fontSize: 13,
+                              fontWeight: FontWeight.w600,
+                              color: Color.fromRGBO(64, 64, 64, 1.0),
+                            ),
+                          ),
+                          Text(
+                            "Admin",
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontFamily: 'Nunito Sans',
+                              fontSize: 11,
+                              color: Color.fromRGBO(86, 86, 86, 1.0),
+                            ),
+                          ),
+                        ],
                       ),
-                      SizedBox(height: 2),
-                      Text(
-                        "Admin",
-                        style: TextStyle(
-                          fontFamily:
-                              'Nunito Sans', // Certifique-se de ter a fonte no projeto
-                          fontSize: 12, // Figma: 12px
-                          fontWeight: FontWeight.w500, // Figma: 600 (SemiBold)
-                          height: 1.0, // Figma: 100%
-                          letterSpacing: 0.3, // Figma: 0px
-                          color: const Color.fromRGBO(
-                            86,
-                            86,
-                            86,
-                            1.0,
-                          ), // Mantido do original
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ],
       ),
