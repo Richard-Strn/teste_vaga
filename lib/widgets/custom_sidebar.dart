@@ -14,19 +14,10 @@ class _CustomSidebarState extends State<CustomSidebar> {
   int selectedIndex = 0;
 
   final List<_SidebarData> items = const [
-    // 1. Início: Ícone de Dashboard (Layout da imagem)
     _SidebarData(Icons.dashboard_rounded, "Início"),
-
-    // 2. Condomínios: Ícone de Prédio/Apartamento
     _SidebarData(Icons.apartment_outlined, "Condomínios"),
-
-    // 3. Endereços: Ícone de Pin de Mapa
     _SidebarData(Icons.location_on_outlined, "Endereços"),
-
-    // 4. Usuários: Ícone de Pessoa única
     _SidebarData(Icons.person_outline, "Usuários"),
-
-    // 5. Visitantes: Ícone de Grupo de pessoas
     _SidebarData(Icons.people_outline, "Visitantes"),
   ];
 
@@ -71,7 +62,10 @@ class _CustomSidebarState extends State<CustomSidebar> {
                     isSelected: selectedIndex == index,
                     onTap: () {
                       setState(() => selectedIndex = index);
-                      widget.onItemSelected(index);
+                      if (index == 0) {
+                        widget.onItemSelected(index);
+                      }
+                      // Os outros botões não executam ação
                     },
                   );
                 },

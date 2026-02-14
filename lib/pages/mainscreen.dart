@@ -4,7 +4,8 @@ import 'package:teste_vaga/widgets/header_section.dart';
 import 'package:teste_vaga/widgets/info_section.dart';
 
 class MainScreen extends StatelessWidget {
-  const MainScreen({super.key});
+  final void Function()? onNavigateToSecondPage;
+  const MainScreen({super.key, this.onNavigateToSecondPage});
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +15,7 @@ class MainScreen extends StatelessWidget {
         children: [
           Expanded(
             child: SingleChildScrollView(
-              // Adicionado para permitir o scroll vertical
-              physics:
-                  const BouncingScrollPhysics(), // Opcional: efeito de rebote suave
+              physics: const BouncingScrollPhysics(),
               child: Padding(
                 padding: const EdgeInsets.all(30),
                 child: Column(
@@ -24,7 +23,9 @@ class MainScreen extends StatelessWidget {
                   children: [
                     const HeaderSection(),
                     const SizedBox(height: 15),
-                    const DashboardCard(),
+                    DashboardCard(
+                      onNavigateToSecondPage: onNavigateToSecondPage,
+                    ),
                     const SizedBox(height: 30),
                     const InfoSection(),
                   ],

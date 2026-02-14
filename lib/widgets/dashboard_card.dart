@@ -3,7 +3,8 @@ import 'package:teste_vaga/pages/secondpage.dart';
 import 'package:teste_vaga/widgets/stat_card.dart';
 
 class DashboardCard extends StatefulWidget {
-  const DashboardCard({super.key});
+  final VoidCallback? onNavigateToSecondPage;
+  const DashboardCard({super.key, this.onNavigateToSecondPage});
 
   @override
   State<DashboardCard> createState() => _DashboardCardState();
@@ -89,10 +90,9 @@ class _DashboardCardState extends State<DashboardCard> {
               // Botão com efeito Hover
               GestureDetector(
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const SecondPage()),
-                  );
+                  if (widget.onNavigateToSecondPage != null) {
+                    widget.onNavigateToSecondPage!();
+                  }
                 },
                 child: MouseRegion(
                   cursor: SystemMouseCursors.click,

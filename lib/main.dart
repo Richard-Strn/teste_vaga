@@ -36,6 +36,10 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  void _goToSecondPage() {
+    _onItemTapped(1); // Novo índice da SecondPage no PageView
+  }
+
   final PageController _pageController = PageController();
 
   void _onItemTapped(int index) {
@@ -51,21 +55,14 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       body: Row(
         children: [
-          // Sua Sidebar que criamos antes
           CustomSidebar(onItemSelected: _onItemTapped),
-
           Expanded(
             child: PageView(
               controller: _pageController,
-              physics:
-                  const NeverScrollableScrollPhysics(), // Desabilita arrastar com mouse
-              children: const [
-                MainScreen(), // Index 0
-                GenericPage(title: "Condomínios"), // Index 1
-                GenericPage(title: "Endereços"), // Index 2
-                GenericPage(title: "Usuários"), // Index 3
-                GenericPage(title: "Visitantes"), // Index 4
-                SecondPage(), // Index 5 - Página de detalhes
+              physics: const NeverScrollableScrollPhysics(),
+              children: [
+                MainScreen(onNavigateToSecondPage: _goToSecondPage), // Index 0
+                const SecondPage(), // Index 1
               ],
             ),
           ),
